@@ -16,7 +16,6 @@ class Form extends React.Component {
 
     handleDateChange(date) {
         this.setState({date: date})
-        this.props.user.eventDate = this.state.date
     }
 
     render() {

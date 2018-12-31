@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Form from './Form';
 import * as actions from '../../actions/usersActions';
-import moment from 'moment';
 class NewUser extends React.Component {
 
     constructor(props) {
@@ -13,7 +12,7 @@ class NewUser extends React.Component {
                 firstName: '',
                 lastName: '',
                 email: '',
-                eventDate: moment()
+                eventDate: ''
             },
             isValid: false,
             isEmailValid: false,

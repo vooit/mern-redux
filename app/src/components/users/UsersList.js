@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 const UsersList = ({users}) => {
     let usersList = users ?
         users.map((user, index) =>
-            <li className="list-group-item" key={index}><Link to={'/users/' + user._id}>{user.firstName} {user.lastName}</Link></li>
+            <li className="list-group-item" key={index}><Link to={'/users/' + user._id}>{index + 1}. {user.firstName} {user.lastName}</Link></li>
         ) : <span>no results fetched</span>;
 
 

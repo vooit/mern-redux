@@ -2,14 +2,12 @@ import React from 'react';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {render} from 'react-dom';
-// import ReactDOM from 'react-dom';
 import {Router, browserHistory} from 'react-router';
 import routes from './routes';
 import {Provider} from "react-redux";
 import configureStore from "./store/configureStore";
 import {loadUsers} from "./actions/usersActions";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-widgets/dist/css/react-widgets.css';
 
 const store = configureStore();
 store.dispatch(loadUsers());

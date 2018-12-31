@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router';
-import User from './User';
 
 const UserListItem = ({user}) => {
     return (
@@ -8,4 +7,4 @@ const UserListItem = ({user}) => {
     );
 };
 
-export default UserListItem;
+export UserListItem;

@@ -10,14 +10,13 @@ export const getUsers = (req, res) => {
     });
 }
 export const addUser = (req, res) => {
-    const newUser = new User(req.body);
+    const newUser = new User(req.body.user);
     console.log(newUser)
     newUser.save((err, user) => {
         if (err) {
             console.log(err);
             return res.json({'success': false, 'message': 'Some Error'});
         }
-        console.log(user);
         return res.json({'success': true, 'message': 'User added successfully', user});
     })
 };

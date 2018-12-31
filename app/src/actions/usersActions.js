@@ -23,14 +23,14 @@ export function postUser(user) {
     };
 }
 
-export function deleteUser(user) {
-    return function (dispatch) {
-        return api.deleteUser(user).then(() => {
-            console.log(`Deleted ${user.id}`)
-            dispatch(deleteUserSuccess(user));
-            return;
-        }).catch(error => {
-            throw(error);
-        })
-    }
-}
+// export function removeUser (user) {
+//     return function (dispatch) {
+//         return api.deleteUser(user).then(() => {
+//             // console.log(`Deleted ${user.id}`);
+//             dispatch(deleteUserSuccess(user));
+//             return user
+//         }).catch(error => {
+//             throw(error);
+//         })
+//     }
+// }

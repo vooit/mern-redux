@@ -6,3 +6,4 @@ Thumbs.db
 .idea/*
 *.map
 .babelrc
+/backend/mongoPass.js

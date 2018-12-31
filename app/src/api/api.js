@@ -19,7 +19,6 @@ export default class Api {
             body: JSON.stringify({user: user})
         });
         return fetch(request).then(response => {
-            console.log(response);
             return response.json();
         }).catch(error => {
             return error;
@@ -27,9 +26,12 @@ export default class Api {
     }
 
     static deleteUser(user) {
-        return fetch('http://localhost:3001/api' + '/' + user.id, {
+        const request = new Request(`http://localhost:3001/api/${user._id}`, {
             method: 'DELETE'
-        }).then(response => response.json()).catch(error => {
+        });
+        return fetch(request).then(response => {
+            return response.json();
+        }).catch(error => {
             return error;
         });
     }

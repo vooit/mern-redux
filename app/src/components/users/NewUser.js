@@ -16,6 +16,8 @@ class NewUser extends React.Component {
             },
             isValid: false,
             isEmailValid: false,
+            // isFirstNameValid: false,
+            // isLastNameValid: false,
             saving: false
         };
         this.saveUser = this.saveUser.bind(this);
@@ -29,6 +31,7 @@ class NewUser extends React.Component {
     }
 
     validator = {
+
         validateEmail(state) {
             if (state.length && state.indexOf("@") !== -1) {
                 return true
@@ -36,7 +39,7 @@ class NewUser extends React.Component {
             else return false
         },
         validateString(state) {
-            if (state.length) {
+            if (state.length > 1) {
                 return true
             }
             else return false
@@ -56,11 +59,28 @@ class NewUser extends React.Component {
         else {
             this.setState({isEmailValid: false})
         }
+
+        //
+        // if (user['firstName'].length < 1)  {
+        //     this.setState({isFirstNameValid: true})
+        // }
+        // else {
+        //     this.setState({isFirstNameValid: false})
+        // }
+
+        //
+        // if (user['lastName'].length < 1)  {
+        //     this.setState({isLastNameValid: true})
+        // }
+        // else {
+        //     this.setState({isLastNameValid: false})
+        // }
+
         if (this.validator.validateString(this.state.user.firstName) &&
             this.validator.validateString(this.state.user.lastName) &&
             this.validator.validateEmail(this.state.user.email)
         ) {
-            this.setState({isValid: true})
+            this.setState({isValid: true});
             console.log(this.state.isValid);
         }
     }
@@ -73,6 +93,8 @@ class NewUser extends React.Component {
                     user={this.state.user}
                     saving={this.state.saving}
                     emailValid={this.state.isEmailValid}
+                    // isFirstNameValid={this.state.isFirstNameValid}
+                    // isLastNameValid={this.state.isLastNameValid}
                     valid={this.state.isValid}
                     onSave={this.saveUser}
                     onChange={this.updateUserState}

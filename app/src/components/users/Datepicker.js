@@ -4,10 +4,9 @@ import {SingleDatePicker} from 'react-dates';
 import 'react-dates/initialize';
 
 
-const DatePicker = (props) =>{
+const DatePicker = (props) => {
     return (
         <SingleDatePicker
-            // showClearDate={true}
             customInputIcon={
                 <img src="https://image.flaticon.com/icons/svg/747/747310.svg"
                      width="20"
@@ -23,9 +22,9 @@ const DatePicker = (props) =>{
             date={props.eventDate}
             onDateChange={date => props.handleDateChange(date)}
             focused={props.focused}
-            // onFocusChange={({focused}) =>
-            //     this.setState({focused})
-            // }
+            onFocusChange={({focused}) =>
+                this.setState({focused})
+            }
             openDirection="up"
             hideKeyboardShortcutsPanel={true}
         />

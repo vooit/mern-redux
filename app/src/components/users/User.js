@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/usersActions'
+import * as actions from '../../actions/userActions';
 
 class User extends React.Component {
     constructor(props, context) {
@@ -8,12 +8,11 @@ class User extends React.Component {
         this.state = {
             user: this.props.user,
         };
-        console.log(this.state.user)
-        this.onDeleteUser = this.onDeleteUser.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
-    onDeleteUser(user) {
-        console.log(user)
+    deleteUser () {
+        console.log(this.state.user);
         this.props.actions.deleteUser(this.state.user)
     }
 
@@ -27,7 +26,7 @@ class User extends React.Component {
                 <p>event date: {this.props.user.eventDate}</p>
                 <br/>
                 <button
-                    onClick={this.onDeleteUser}
+                    onClick={this.deleteUser}
                     className="btn btn-primary">
                     delete
                 </button>
@@ -44,7 +43,6 @@ function mapStateToProps(state, ownProps) {
     if (userId && state.users.length > 0) {
         user = state.users.find(user => user._id === userId);
     }
-    console.log(user)
     return {user: user};
 }
 

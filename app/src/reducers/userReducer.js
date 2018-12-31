@@ -4,19 +4,22 @@ import {browserHistory} from 'react-router';
 
 
 export default function userReducer(state = initialState.users, action) {
-    switch(action.type) {
+    switch (action.type) {
         case types.LOAD_USERS_SUCCESS:
             return action.users;
         case types.CREATE_USER_SUCCESS:
-            // browserHistory.push(`/users/${action.user._id}`);
+            const newUser = action.user.user;
+            console.log(newUser)
+            browserHistory.push(`/users/`);
             return [
                 ...state.filter(user => user._id !== action.user._id),
-                Object.assign({}, action.user)
+                Object.assign({}, newUser),
             ]
+
         case types.DELETE_USER_SUCCESS: {
             const newState = Object.assign([], state);
             const indexOfUserToDelete = state.findIndex(user => {
-                return user.id === action.user.id
+                return user._id === action.user._id
             })
             newState.splice(indexOfUserToDelete, 1);
             // browserHistory.push('/users');

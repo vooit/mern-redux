@@ -29,13 +29,15 @@ class Form extends React.Component {
                         label="First Name"
                         value={this.props.user.firstName}
                         onChange={this.props.onChange}/>
-
+                    {/*{this.props.isFirstNameValid ?*/}
+                        {/*null :  <span className="alert alert-danger">firstName is required</span> }*/}
                     <TextInput
                         name="lastName"
                         label="Last Name"
                         value={this.props.user.lastName}
                         onChange={this.props.onChange}/>
-
+                    {/*{this.props.isLastNameValid ?*/}
+                        {/*null :  <span className="alert alert-danger">last is required</span> }*/}
                     <TextInput
                         name="email"
                         label="Email"
@@ -44,9 +46,9 @@ class Form extends React.Component {
                     {this.props.emailValid ?
                         <span className="alert alert-danger">Email is required an must contain "@"</span> : null}
                     <br/>
-                    <SingleDatePicker
-                        // showClearDate={true}
 
+
+                    <SingleDatePicker
                         customInputIcon={
                             <img src="https://image.flaticon.com/icons/svg/747/747310.svg"
                                  width="20"
@@ -68,6 +70,9 @@ class Form extends React.Component {
                         hideKeyboardShortcutsPanel={true}
                     />
                     <br/>
+
+
+
                     <input
                         type="submit"
                         className="btn btn-primary"

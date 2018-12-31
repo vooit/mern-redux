@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import SourceMapSupport from 'source-map-support';
 import userRoutes from './routes/user.server.route';
+import mongopass from './mongoPass.js';
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const port = process.env.PORT || 3001;
 
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb+srv://vooit:Solid234@heavenbase-bu5f3.mongodb.net/users-mern?&w=1", { useNewUrlParser: true })
+mongoose.connect(mongopass, { useNewUrlParser: true })
     .then(() => {
         console.log("Connected to database!");
     })

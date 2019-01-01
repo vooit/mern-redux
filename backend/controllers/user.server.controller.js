@@ -17,7 +17,6 @@ export const addUser = (req, res) => {
             console.log(err);
             return res.json({'success': false, 'message': 'Some Error'});
         }
-        console.log(user);
         return res.json({'success': true, 'message': 'User added successfully', user});
     })
 };

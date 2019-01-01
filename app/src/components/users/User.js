@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions/usersActions'
 
 class User extends React.Component {
+
     static propTypes = {
         user: PropTypes.object.isRequired
     }
@@ -11,7 +12,7 @@ class User extends React.Component {
     onDeleteUser = () => {
         console.log(this.props.user)
         this.props.deleteUser(this.props.user)
-    }
+
 
     render() {
         return (
@@ -47,7 +48,6 @@ function mapDispatchToProps(dispatch) {
         deleteUser: (user) => {dispatch(actions.deleteUser(user))}
     })
 }
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

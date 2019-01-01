@@ -5,6 +5,7 @@ export function loadUsers() {
     return function (dispatch) {
         return api.getAllUsers().then(users => {
             dispatch(loadUsersSuccess(users.users));
+            return users.users
         }).catch(error => {
             throw(error);
         });

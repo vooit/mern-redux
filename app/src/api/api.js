@@ -11,7 +11,7 @@ export default class Api {
     }
 
     static postUser(user) {
-        const request = new Request('http://localhost:3001/api', {
+        const request = new Request(`${url}`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -19,7 +19,6 @@ export default class Api {
             body: JSON.stringify({user: user})
         });
         return fetch(request).then(response => {
-            console.log(response);
             return response.json();
         }).catch(error => {
             return error;

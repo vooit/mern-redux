@@ -11,7 +11,7 @@ export default class Api {
     }
 
     static postUser(user) {
-        const request = new Request('http://localhost:3001/api', {
+        const request = new Request(`${url}`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -26,12 +26,9 @@ export default class Api {
     }
 
     static deleteUser(user) {
-        const request = new Request(`http://localhost:3001/api/${user._id}`, {
+        return fetch('http://localhost:3001/api' + '/' + user.id, {
             method: 'DELETE'
-        });
-        return fetch(request).then(response => {
-            return response.json();
-        }).catch(error => {
+        }).then(response => response.json()).catch(error => {
             return error;
         });
     }

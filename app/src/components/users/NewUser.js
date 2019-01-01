@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Form from './Form';
 import * as actions from '../../actions/usersActions';
+import Validator from '../utils/Validator';
+
 class NewUser extends React.Component {
 
     constructor(props) {
@@ -16,36 +18,32 @@ class NewUser extends React.Component {
             },
             isValid: false,
             isEmailValid: false,
-            // isFirstNameValid: false,
-            // isLastNameValid: false,
-            saving: false
+            isDateValid: false
         };
         this.saveUser = this.saveUser.bind(this);
         this.updateUserState = this.updateUserState.bind(this);
+        this.updateDate = this.updateDate.bind(this)
+    }
+
+    updateDate(date) {
+        let user = this.state.user;
+        user['eventDate'] = date;
+        console.log('result after date picker: ', user['eventDate']);
+        Validator.validateDate(date);
+        if (Validator.validateDate(date) === true) {
+            this.setState({isDateValid: true})
+            console.log("isDateValid: ", this.state.isDateValid)
+        }
+        else {
+            this.setState({isDateValid: false})
+            console.log("isDateValid: ", this.state.isDateValid)
+        }
     }
 
     saveUser(event) {
-        console.log('save action');
         event.preventDefault();
         this.props.actions.postUser(this.state.user);
     }
-
-    validator = {
-
-        validateEmail(state) {
-            if (state.length && state.indexOf("@") !== -1) {
-                return true
-            }
-            else return false
-        },
-        validateString(state) {
-            if (state.length > 1) {
-                return true
-            }
-            else return false
-        }
-    };
-
 
     updateUserState(event) {
         const field = event.target.name;
@@ -60,28 +58,15 @@ class NewUser extends React.Component {
             this.setState({isEmailValid: false})
         }
 
-        //
-        // if (user['firstName'].length < 1)  {
-        //     this.setState({isFirstNameValid: true})
-        // }
-        // else {
-        //     this.setState({isFirstNameValid: false})
-        // }
-
-        //
-        // if (user['lastName'].length < 1)  {
-        //     this.setState({isLastNameValid: true})
-        // }
-        // else {
-        //     this.setState({isLastNameValid: false})
-        // }
-
-        if (this.validator.validateString(this.state.user.firstName) &&
-            this.validator.validateString(this.state.user.lastName) &&
-            this.validator.validateEmail(this.state.user.email)
+        if (Validator.validateString(this.state.user.firstName) &&
+            Validator.validateString(this.state.user.lastName) &&
+            Validator.validateEmail(this.state.user.email) &&
+            Validator.validateDate(this.state.user.eventDate)
         ) {
-            this.setState({isValid: true});
-            console.log(this.state.isValid);
+            this.setState((state) => ({isValid: true}))
+        }
+        else {
+            this.setState((state) => ({isValid: false}))
         }
     }
 
@@ -93,19 +78,13 @@ class NewUser extends React.Component {
                     user={this.state.user}
                     saving={this.state.saving}
                     emailValid={this.state.isEmailValid}
-                    // isFirstNameValid={this.state.isFirstNameValid}
-                    // isLastNameValid={this.state.isLastNameValid}
                     valid={this.state.isValid}
                     onSave={this.saveUser}
+                    dateHandler={this.updateDate}
+                    eventDate={this.state.eventDate}
                     onChange={this.updateUserState}
                 />
-                {this.state.user.firstName}
                 <br/>
-                {this.state.user.lastName}
-                <br/>
-                {this.state.user.email}
-                <br/>
-                {this.state.user.eventDate}
             </div>
         );
     }

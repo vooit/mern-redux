@@ -1,20 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/usersActions'
 
 class User extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            user: this.props.user,
-        };
-        this.onDeleteUser = this.onDeleteUser.bind(this);
+
+    static propTypes = {
+        user: PropTypes.object.isRequired
     }
 
-    onDeleteUser() {
-        console.log(this.state.user);
-        this.props.actions.deleteUser(this.state.user)
-    }
+    onDeleteUser = () => {
+        console.log(this.props.user)
+        this.props.deleteUser(this.props.user)
+
 
     render() {
         return (
@@ -37,15 +35,19 @@ class User extends React.Component {
 
 
 function mapStateToProps(state, ownProps) {
-
     let user = {firstName: '', lastName: '', email: '', eventDate: ''};
     const userId = ownProps.params.id;
     if (userId && state.users.length > 0) {
         user = state.users.find(user => user._id === userId);
     }
-    return {user: user};
+    return { user };
+}
+
+function mapDispatchToProps(dispatch) {
+    return({
+        deleteUser: (user) => {dispatch(actions.deleteUser(user))}
+    })
 }
 
 
-
-export default connect(mapStateToProps)(User);
+export default connect(mapStateToProps, mapDispatchToProps)(User);

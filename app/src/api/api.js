@@ -26,7 +26,8 @@ export default class Api {
     }
 
     static deleteUser(user) {
-        return fetch('http://localhost:3001/api' + '/' + user.id, {
+        console.log('will be deleting ', user)
+        return fetch('http://localhost:3001/api/' + user._id, {
             method: 'DELETE'
         }).then(response => response.json()).catch(error => {
             return error;
